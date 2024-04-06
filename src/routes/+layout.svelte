@@ -11,7 +11,7 @@
 	}, 100);
 </script>
 
-<div class="h-full">
+<div>
 	<Header />
 
 	<main>
