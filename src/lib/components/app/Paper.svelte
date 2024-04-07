@@ -1,22 +1,8 @@
 <script lang="ts">
+	import DOMPurify from "dompurify";
 	import { onMount } from "svelte";
-	import Quill from "quill";
 
-	let element: HTMLTextAreaElement;
-	let quill: Quill;
-
-	onMount(() => {
-		quill = new Quill(element);
-
-		element.addEventListener("keydown", (e) => {
-			if (e.key == "z") {
-				console.log(1);
-				e.preventDefault();
-				quill.history.undo();
-				return false;
-			}
-		});
-	});
+	export let element: HTMLDivElement;
 
 	function cleanElement(element: Element): Element {
 		element.removeAttribute("class");
@@ -29,9 +15,43 @@
 
 		return element;
 	}
+
+	onMount(() => {
+		element.addEventListener("keydown", (e) => {
+			if ((e.ctrlKey && !e.metaKey) || (!e.ctrlKey && e.metaKey)) {
+				if (e.key == "z" && !element.innerHTML)
+					// Ctrl-Zかつ中身が空なら、閉じたタブを開かないようにイベントを抑制。
+					e.preventDefault();
+			}
+		});
+
+		element.addEventListener("paste", (e) => {
+			if (!e.clipboardData) return;
+
+			e.preventDefault();
+
+			const rawHtml = new DOMParser().parseFromString(
+				e.clipboardData.getData("text/html"),
+				"text/html"
+			).body;
+			cleanElement(rawHtml);
+
+			const selection = getSelection();
+			if (!selection) return;
+
+			// ペーストと同じことをする。
+			const html = DOMPurify.sanitize(rawHtml);
+			if (document.execCommand) {
+				document.execCommand("insertHTML", false, html);
+			} else {
+				// TODO: これではペースト後にundoができなくなる。それを修正したい。
+				selection.getRangeAt(0).insertNode(new DOMParser().parseFromString(html, "text/html").body);
+			}
+		});
+	});
 </script>
 
-<textarea
+<div
 	class="
     // Typographyのスタイル
     prose dark:prose-invert
@@ -40,8 +60,6 @@
     // レイアウト
     w-full min-h-52 p-4 border m-auto
   "
-	on:input={() => {
-		for (const child of element.children) cleanElement(child);
-	}}
+	contenteditable="true"
 	bind:this={element}
-></textarea>
+></div>
