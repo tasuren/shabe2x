@@ -1,99 +1,79 @@
 <script lang="ts">
 	import { onDestroy } from "svelte";
+
+	import { volume, voiceName } from "$lib/state";
+
 	import Paper from "./Paper.svelte";
+	import Tooltip from "./Tooltip.svelte";
+	import { stringifyNode } from "./stringify";
+	import { speaker, text } from "./state";
 
 	let paperElement: HTMLDivElement;
 
-	function extractStringFromElement(node: Node): string {
-		let text = "";
+	// スピーカーの準備
+	$speaker.onVoiceUpdate = () => {
+		// これをしないとリアクティブにならない。
+		// TODO: 5.0で対応されるっぽいので、対応したらこれを削除。
+		$speaker.voices = $speaker.voices;
+	};
 
-		for (let childNode of node.childNodes)
-			if (childNode.nodeType == Node.TEXT_NODE) text += childNode.textContent;
-			else text += extractStringFromElement(childNode);
-
-		if (
-			node.nodeType == Node.ELEMENT_NODE &&
-			((node.nodeName.length == 2 && node.nodeName.startsWith("H")) || node.nodeName == "P")
-		) {
-			console.log(node.nodeName);
-			text += "\n\n";
-		}
-
-		return text;
+	function play(node: Node) {
+		$text = stringifyNode(node);
+		$speaker.play();
 	}
 
-	let voices: SpeechSynthesisVoice[],
-		voice = 0;
-
-	function setupVoice() {
-		voices = speechSynthesis.getVoices();
-		for (let i = 0; i < voices.length; i++) {
-			if (voices[i].default) voice = i;
-			if (voices[i].name.includes("Samantha")) {
-				voice = i;
-				break;
-			}
-		}
+	function onPlay() {
+		// 状態をセーブする。
+		play(paperElement);
 	}
 
-	speechSynthesis.onvoiceschanged = (_) => setupVoice();
-	// 既にアプリを開いたことがあり`onvoicechanged`が実行されていた時、
-	// 画面遷移でアプリを開いた場合は`onvoicechanged`が呼ばれることはない。
-	// だからここで絶対に初期化させる。
-	setupVoice();
-
-	// `isPlaying`ではなく`speechSynthesis.speaking`を使いたいが、それではHTMLに反映がされない。
-	let volume = 100,
-		isPlaying = false;
-	function onPlay(_: MouseEvent) {
-		// HTMLにある文字列を抽出する。
-		const uttr = new SpeechSynthesisUtterance(extractStringFromElement(paperElement));
-
-		uttr.voice = voices[voice];
-		uttr.volume = volume * 0.01;
-		uttr.onend = (_) => (isPlaying = false);
-
-		if (speechSynthesis.speaking) speechSynthesis.cancel();
-
-		speechSynthesis.speak(uttr);
-		isPlaying = true;
-	}
-
-	function onStop(_: MouseEvent) {
-		speechSynthesis.cancel();
-		isPlaying = false;
+	function onStop() {
+		$speaker.stop();
 	}
 
 	onDestroy(() => {
-		if (speechSynthesis.speaking) speechSynthesis.cancel();
+		if ($speaker.isPlaying) $speaker.stop();
 	});
 </script>
 
-<div>
+<Tooltip {play}></Tooltip>
+
+<div id="app" class="mb-10">
 	<div class="sticky top-4">
-		<div class="flex justify-center space-x-2">
+		<div
+			class="
+				// レイアウト
+				flex justify-center items-center space-x-2 mx-auto
+				// 見た目
+				w-fit p-4 backdrop-blur-md rounded-md
+			"
+		>
 			<button type="button" on:click={() => (paperElement.innerHTML = "")}>消去</button>
 			<div>|</div>
+
 			<label for="voice-select">声：</label>
-			{#key voices}
-				<select
-					name="voice-select"
-					value={voice}
-					class="w-36"
-					on:change={(e) => (voice = parseInt(e.currentTarget.value))}
-				>
-					{#each speechSynthesis.getVoices() as voice, i}
-						<option value={i}>{voice.name} ({voice.lang})</option>
+			{#key $speaker.voices}
+				<select name="voice-select" bind:value={$voiceName} class="w-36">
+					<option value="" disabled>選択してください</option>
+					{#each Object.values($speaker.voices) as voice}
+						<option value={voice.name}>{voice.name}</option>
 					{/each}
 				</select>
 			{/key}
 
 			<label for="volume">音量：</label>
-			<input type="range" name="volume" bind:value={volume} min="0" max="100" />
+			<input type="range" name="volume" bind:value={$volume} min="0" max="100" />
 			<button type="button" on:click={onPlay}>再生</button>
-			<button type="button" on:click={onStop} disabled={!isPlaying}>停止</button>
+			<button type="button" on:click={onStop}>停止</button>
 		</div>
 	</div>
 
-	<Paper bind:element={paperElement} class="my-4 prose dark:prose-invert overflow-y-auto" />
+	<Paper
+		class="
+		// Typography
+		prose dark:prose-invert
+		// 配置
+		my-1 min-h-52"
+		bind:element={paperElement}
+	/>
 </div>

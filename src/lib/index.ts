@@ -1,4 +1,3 @@
-export { default as Button } from "./components/Button.svelte";
 export { default as ThemeButton } from "./components/ThemeButton.svelte";
 export { default as App } from "./components/app/App.svelte";
 

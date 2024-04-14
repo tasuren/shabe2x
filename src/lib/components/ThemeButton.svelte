@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Button from "./Button.svelte";
-
 	const STATIC_THEMES = {
 		dark: "夜",
 		light: "昼"
@@ -50,12 +48,13 @@
 </script>
 
 <div>
-	<Button
-		onClick={(_) => {
+	<button
+		type="button"
+		on:click={(_) => {
 			currentTheme = getNext(currentTheme);
 		}}
 	>
 		テーマ：
 		{THEMES[currentTheme]}
-	</Button>
+	</button>
 </div>

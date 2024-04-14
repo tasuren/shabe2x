@@ -1,8 +1,6 @@
-<script>
-</script>
-
-<article class="prose dark:prose-invert w-full">
-	英語の文章朗読アプリ、英語の文章を何度も何度もロボットに朗読付けしてみましょう！<br>
-
-	<a class="not-prose" href="/app">しゃべしゃべする</a>
-</article>
+<div class="flex" style:height="calc(100vh - 5rem)">
+	<div class="my-auto">
+		<h1 class="m-0 text-5xl">快適なシャドーイングアプリ</h1>
+		<p>HTMLのコピーペーストや部分選択による再生にも対応</p>
+	</div>
+</div>
