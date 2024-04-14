@@ -7,8 +7,8 @@
 	lazyThemeTransitionSetup();
 </script>
 
-<div class="flex justify-center items-center">
-	<div style:max-width="65ch" class="w-3/5">
+<div class="md:flex md:justify-center md:items-center">
+	<div style:max-width="65ch" class="md:w-3/5">
 		<nav class="h-20 flex justify-between items-center">
 			<h1 class="w-1/3 m-0">しゃべしゃべ</h1>
 			<div class="flex space-x-4">

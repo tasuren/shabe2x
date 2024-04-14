@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { speaker, text } from "./state";
+	import { speaker } from "./state";
+	import { stringifyNode } from "./stringify";
 
 	export let hidden = true,
 		x = 0,
@@ -7,16 +8,20 @@
 	export let element: HTMLDivElement | null = null;
 	export let play: (node: Node) => void;
 
+	let selectedContents: DocumentFragment | null = null;
+
 	function makeGoogleTranslateURL() {
+		if (!selectedContents) return;
+
 		const params = new URLSearchParams({
 			sl: "auto",
 			tl: "ja",
-			q: $text
+			q: stringifyNode(selectedContents)
 		});
-		return `https://translate.google.com/?${params.toString()}`;
+
+    return `https://translate.google.com/?${params.toString()}`;
 	}
 
-	let selectedContents: DocumentFragment | null = null;
 	addEventListener("mouseup", (event) => {
 		if (isMouseHover) return;
 
