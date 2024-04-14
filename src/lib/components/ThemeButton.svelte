@@ -41,8 +41,11 @@
 		localStorage.setItem("theme", currentTheme);
 		let currentStaticTheme: StaticTheme =
 			currentTheme === "system" ? getSystemTheme() : currentTheme;
+
 		if (currentStaticTheme == "dark") document.documentElement.setAttribute("data-theme", "dark");
 		else document.documentElement.removeAttribute("data-theme");
+
+		document.documentElement.style.colorScheme = currentStaticTheme;
 	}
 </script>
 

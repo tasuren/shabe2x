@@ -1,5 +1,5 @@
 {
-  "name": "syabe2x-core",
+  "name": "syabe2x",
   "version": "0.1.0",
   "license": "GPL-3.0-only",
   "private": true,
@@ -22,7 +22,6 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
-    "@sveltejs/package": "^2.3.1",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@tailwindcss/typography": "^0.5.12",
     "@types/eslint": "^8.56.0",
@@ -35,7 +34,6 @@
     "postcss": "^8.4.38",
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
-    "tailwind": "^4.0.0",
     "tailwindcss": "^3.4.3",
     "tslib": "^2.4.1",
     "typescript": "^5.0.0",

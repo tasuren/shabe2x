@@ -3,6 +3,8 @@
 	import { onMount } from "svelte";
 
 	export let element: HTMLDivElement;
+	let className: string = "";
+	export { className as class };
 
 	function cleanElement(element: Element): Element {
 		element.removeAttribute("class");
@@ -53,13 +55,12 @@
 
 <div
 	class="
-    // Typographyのスタイル
-    prose dark:prose-invert
-    // 見た目
-    outline-none bg-gray-light dark:bg-gray-dark
-    // レイアウト
-    w-full min-h-52 p-4 border m-auto
-  "
+		// 見た目
+		outline outline-1 bg-gray-light dark:bg-gray-dark
+		// レイアウト
+		h-full p-4 border
+		{className}
+	"
 	contenteditable="true"
 	bind:this={element}
 ></div>
