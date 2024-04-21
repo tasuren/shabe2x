@@ -45,14 +45,18 @@ export class NativeSpeaker extends Speaker<SpeechSynthesisVoice> {
 		for (const rawVoice of speechSynthesis.getVoices()) {
 			if (!confirmDefault) {
 				if (rawVoice.default) defaultVoiceName = rawVoice.name;
-				if (
-					rawVoice.name.includes("Samantha") ||
-					(rawVoice.name.includes("アメリカ") && rawVoice.name.includes("英語"))
-				) {
-					// Samanthaの声が良い感じなので、それがあればそれを絶対デフォルトとする。
+
+				if (rawVoice.name.includes("アメリカ") && rawVoice.name.includes("英語")) {
 					defaultVoiceName = rawVoice.name;
 					confirmDefault = true;
 				}
+			}
+
+			if (rawVoice.name.includes("Samantha")) {
+				// AppleデバイスではSamanthaが一番聞きやすい。
+				// だから、これがあれば問答無用で選択する。
+				defaultVoiceName = rawVoice.name;
+				confirmDefault = true;
 			}
 
 			voices[rawVoice.name] = { name: rawVoice.name, language: rawVoice.lang, body: rawVoice };
