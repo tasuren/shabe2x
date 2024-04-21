@@ -4,6 +4,7 @@
 	import Paper from "./Paper.svelte";
 	import { stringifyNode } from "./stringify";
 	import type { Speaker } from "./speaker";
+	import Tooltip from "./Tooltip.svelte";
 
 	export let speaker: Speaker<any>;
 	export let voiceName: string;
@@ -48,16 +49,16 @@
 	}
 
 	addEventListener("keydown", (e) => {
-		if ((!e.metaKey && !e.ctrlKey) || !e.shiftKey) return;
+		if ((!e.metaKey && !e.ctrlKey)) return;
 
 		let rate: number | null = null;
 
-		if (e.key == "a") {
+		if (e.key == "1") {
 			rate = 0.5;
-		} else if (e.key == "s") rate = 1;
+		} else if (e.key == "2") rate = 1;
 
 		if (rate) onPlay(rate);
-		else if (e.key == "z") onStop();
+		else if (e.key == "3") onStop();
 		else return;
 
 		e.stopPropagation();
@@ -68,6 +69,8 @@
 		if (speaker.isPlaying) speaker.stop();
 	});
 </script>
+
+<Tooltip bind:speaker {play} />
 
 <div id="app" style:max-width="65ch" class="mx-auto">
 	<div class="sticky top-4">

@@ -27,13 +27,13 @@
 	</p>
 	<h3>ショートカットキー</h3>
 	<p>
-		<key>Ctrl</key>（Macの場合<key>command</key>）と<key>Shift</key
-		>を押しながら以下のキーを押すと、それに対応したアクションをすることができます。
+		<key>Ctrl</key>（Macの場合<key>command</key
+		>）を押しながら以下のキーを押すと、それに対応したアクションをすることができます。
 	</p>
 	<ul>
-		<li><key>a</key>：ゆっくり再生</li>
-		<li><key>s</key>：普通に再生</li>
-		<li><key>z</key>：停止</li>
+		<li><key>1</key>：ゆっくり再生</li>
+		<li><key>2</key>：普通に再生</li>
+		<li><key>3</key>：停止</li>
 	</ul>
 
 	<h2>対応ブラウザ</h2>
