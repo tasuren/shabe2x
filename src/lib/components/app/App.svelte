@@ -19,6 +19,7 @@
 		speaker.voices = speaker.voices;
 		if (!voiceName && speaker.defaultVoiceName) voiceName = speaker.defaultVoiceName;
 	};
+	speaker.setupVoices();
 
 	function play(rate: number, node: Node) {
 		text = stringifyNode(node);
