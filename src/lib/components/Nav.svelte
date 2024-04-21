@@ -3,9 +3,6 @@
 
 	const md = matchMedia("(min-width: 768px)");
 	let isMd = md.matches;
-
-	if (!isMd) alert("すみませんが、まだスマホやタブレットには完全対応していません。");
-
 	let menuHidden: boolean = !isMd;
 	md.addEventListener("change", (e) => {
 		isMd = e.matches;
