@@ -2,6 +2,10 @@
 	import Article from "$lib/components/Article.svelte";
 </script>
 
+<svelte:head>
+	<title>しゃべしゃべの説明書</title>
+</svelte:head>
+
 <Article class="mt-4">
 	<h1>説明書</h1>
 	<h2>アプリの開き方</h2>
@@ -48,7 +52,8 @@
 		まずこのアプリはまだ完成したばかりで、動作が不安定です。バグがあれば次の連絡先に連絡してください。
 	</p>
 	<p>
-		ソースコードは<a href="https://github.com/tasuren/shabe2x" target="_blank">GitHubのこのリポジトリ</a
+		ソースコードは<a href="https://github.com/tasuren/shabe2x" target="_blank"
+			>GitHubのこのリポジトリ</a
 		>にてホストしています。ですので、問題などはできればここでIssueとして投稿してください。<br />
 		また、開発者はtasurenであり、ホームページは<a href="https://tasuren.jp/" target="_blank">ここ</a
 		>です。開発者の問い合わせ情報もこのホームページにあります。
