@@ -4,7 +4,7 @@
 	const md = matchMedia("(min-width: 768px)");
 	let isMd = md.matches;
 
-	if (isMd) alert("すみませんが、まだスマホやタブレットには完全対応していません。");
+	if (!isMd) alert("すみませんが、まだスマホやタブレットには完全対応していません。");
 
 	let menuHidden: boolean = !isMd;
 	md.addEventListener("change", (e) => {
@@ -17,7 +17,7 @@
 	}
 </script>
 
-<nav class="h-20 flex justify-between items-center">
+<nav class="h-20 mx-2 flex justify-between items-center">
 	<h1 class="md:w-1/3 m-0">しゃべしゃべ</h1>
 
 	<button type="button" class="visible md:hidden relative z-50" on:click={toggleMenuHidden}>
