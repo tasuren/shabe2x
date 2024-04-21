@@ -10,10 +10,10 @@
 	onMount(() => {});
 </script>
 
-<div style:max-width="65ch" class="mx-2 pb-2 md:m-auto">
+<div style:max-width="65ch" class="mx-auto">
 	<Nav />
 
-	<main>
+	<main class="pb-10">
 		<slot />
 	</main>
 </div>

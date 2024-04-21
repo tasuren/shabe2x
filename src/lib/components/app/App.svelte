@@ -2,7 +2,6 @@
 	import { onDestroy } from "svelte";
 
 	import Paper from "./Paper.svelte";
-	import Tooltip from "./Tooltip.svelte";
 	import { stringifyNode } from "./stringify";
 	import type { Speaker } from "./speaker";
 
@@ -26,9 +25,17 @@
 		speaker.play({ text, voiceName, volume, rate });
 	}
 
-	function onPlay(rateToUse: number) {
-		// 状態をセーブする。
-		play(rateToUse, paperElement);
+	function onPlay(rate: number) {
+		let node: Node = paperElement;
+		const selection = getSelection();
+
+		if (selection) {
+			const range = selection.getRangeAt(0);
+			let selectedContents = range.cloneContents();
+			if (selectedContents.textContent) node = selectedContents;
+		}
+
+		play(rate, node);
 	}
 
 	function onStop() {
@@ -39,14 +46,29 @@
 		if (confirm("内容をリセットしますか？")) paperElement.innerHTML = "";
 	}
 
+	addEventListener("keydown", (e) => {
+		if ((!e.metaKey && !e.ctrlKey) || !e.shiftKey) return;
+
+		let rate: number | null = null;
+
+		if (e.key == "a") {
+			rate = 0.5;
+		} else if (e.key == "s") rate = 1;
+
+		if (rate) onPlay(rate);
+		else if (e.key == "z") onStop();
+		else return;
+
+		e.stopPropagation();
+		e.preventDefault();
+	});
+
 	onDestroy(() => {
 		if (speaker.isPlaying) speaker.stop();
 	});
 </script>
 
-<Tooltip bind:speaker {play}></Tooltip>
-
-<div id="app" style:max-width="65ch" class="mx-auto mb-10">
+<div id="app" style:max-width="65ch" class="mx-auto">
 	<div class="sticky top-4">
 		<div
 			class="
