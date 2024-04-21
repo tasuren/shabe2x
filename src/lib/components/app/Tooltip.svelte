@@ -1,14 +1,19 @@
 <script lang="ts">
-	import { speaker } from "./state";
+	import type { Speaker } from "./speaker";
 	import { stringifyNode } from "./stringify";
 
+	export let speaker: Speaker<any>;
 	export let hidden = true,
 		x = 0,
 		y = 0;
 	export let element: HTMLDivElement | null = null;
-	export let play: (node: Node) => void;
+	let outerPlay: (rate: number, node: Node) => void;
+	export { outerPlay as play };
 
 	let selectedContents: DocumentFragment | null = null;
+	let play = (rate: number) => {
+		if (selectedContents) outerPlay(rate, selectedContents);
+	};
 
 	function makeGoogleTranslateURL() {
 		if (!selectedContents) return;
@@ -19,7 +24,7 @@
 			q: stringifyNode(selectedContents)
 		});
 
-    return `https://translate.google.com/?${params.toString()}`;
+		return `https://translate.google.com/?${params.toString()}`;
 	}
 
 	addEventListener("mouseup", (event) => {
@@ -65,10 +70,16 @@
 			<button
 				type="button"
 				on:click={() => {
-					if (selectedContents) play(selectedContents);
+					play(0.5);
+				}}>部分ゆっくり再生</button
+			>
+			<button
+				type="button"
+				on:click={() => {
+					play(1);
 				}}>部分再生</button
 			>
-			<button type="button" on:click={$speaker.stop}>停止</button>
+			<button type="button" on:click={speaker.stop}>停止</button>
 			<a href={makeGoogleTranslateURL()} target="_blank">Google 翻訳で開く</a>
 		</div>
 	{/if}

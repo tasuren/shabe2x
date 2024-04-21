@@ -1,6 +1,9 @@
-import { voiceName, volume } from "$lib/state";
-import { get } from "svelte/store";
-import { text } from "./state";
+export interface Utterance {
+	text: string;
+	voiceName: string;
+	volume: number;
+	rate: number;
+}
 
 export interface Voice<T> {
 	name: string;
@@ -18,7 +21,7 @@ export abstract class Speaker<T> {
 		this.isPlaying = false;
 	}
 
-	abstract play(text: string): void;
+	abstract play(abcUttr: Utterance): void;
 	abstract stop(): void;
 }
 
@@ -47,7 +50,6 @@ export class NativeSpeaker extends Speaker<SpeechSynthesisVoice> {
 			}
 
 			if (defaultVoiceName) {
-				if (!get(voiceName)) voiceName.set(defaultVoiceName);
 				this.defaultVoiceName = defaultVoiceName;
 			}
 
@@ -64,11 +66,12 @@ export class NativeSpeaker extends Speaker<SpeechSynthesisVoice> {
 		setupVoices();
 	}
 
-	play() {
-		const uttr = new SpeechSynthesisUtterance(get(text));
+	play(abcUttr: Utterance) {
+		const uttr = new SpeechSynthesisUtterance(abcUttr.text);
 
-		uttr.volume = get(volume) * 0.01;
-		if (get(voiceName)) uttr.voice = this.voices[get(voiceName)].body;
+		uttr.volume = abcUttr.volume * 0.01;
+		uttr.rate = abcUttr.rate;
+		if (abcUttr.voiceName) uttr.voice = this.voices[abcUttr.voiceName].body;
 		uttr.onend = () => (this.isPlaying = false);
 
 		if (speechSynthesis.speaking) this.stop();

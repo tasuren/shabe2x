@@ -3,27 +3,17 @@
 	import ThemeButton from "$components/ThemeButton.svelte";
 
 	import "../app.css";
+	import { onMount } from "svelte";
+	import Nav from "$lib/components/Nav.svelte";
 
 	lazyThemeTransitionSetup();
+
+	onMount(() => {});
 </script>
 
-<div class="md:flex md:justify-center md:items-center">
-	<div style:max-width="65ch" class="md:w-3/5">
-		<nav class="h-20 flex justify-between items-center">
-			<h1 class="w-1/3 m-0">しゃべしゃべ</h1>
-			<div class="flex space-x-4">
-				<div>
-					<a href="/">ホーム</a>
-				</div>
-				<div>
-					<a href="/docs">説明書</a>
-				</div>
-				<div><a href="/app">アプリを開く</a></div>
-				<div class="w-28 text-center">
-					<ThemeButton />
-				</div>
-			</div>
-		</nav>
+<div>
+	<div style:max-width="65ch" class="mx-2 my-2 md:m-auto">
+		<Nav />
 
 		<main>
 			<slot />

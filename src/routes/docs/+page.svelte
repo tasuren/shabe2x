@@ -1,9 +1,8 @@
 <script>
 	import Article from "$lib/components/Article.svelte";
-
 </script>
 
-<Article>
+<Article class="mt-4">
   <h1>説明書</h1>
   <h2>アプリの開き方</h2>
   <p>

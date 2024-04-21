@@ -28,7 +28,7 @@
 		});
 
 		element.addEventListener("paste", (e) => {
-			if (!e.clipboardData) return;
+			if (!e.clipboardData || !e.clipboardData.getData("text/html")) return;
 
 			e.preventDefault();
 
