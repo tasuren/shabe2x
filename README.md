@@ -10,6 +10,8 @@ Web Speech APIを使ったネイティブ環境での読み上げを使用し、
 ## 技術スタック
 - SvelteKit
 - Tailwind CSS
+  [Preflight](https://tailwindcss.com/docs/preflight)が無効化されています。
+  開発時にはこれを留意してください。
 - Cloudflare Pages
 
 ## ToDo
@@ -21,3 +23,4 @@ Web Speech APIを使ったネイティブ環境での読み上げを使用し、
 
 ## その他情報
 - [ライセンス](./LICENSE)
+- [ウェブサイト](https://shabe2x.tasuren.jp)
