@@ -11,3 +11,7 @@ a:visited {
   @apply text-link-visited;
 }
 img { height: auto; max-width: 100%; @apply rounded-md; }
+
+prose {
+  @apply prose-shabe2x;
+}

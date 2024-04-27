@@ -17,10 +17,12 @@ export default {
 		},
 		extend: {
 			typography: ({ theme }) => ({
-				zinc: {
+				shabe2x: {
 					css: {
 						"--tw-prose-headings": theme("colors.zinc[800]"),
-						"--tw-prose-invert-headings": theme("colors.zinc[300]")
+						"--tw-prose-invert-headings": theme("colors.zinc[300]"),
+						"--tw-prose-links": theme('colors.link'),
+						"--tw-prose-invert-links": theme("colors.link")
 					}
 				}
 			})

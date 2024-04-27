@@ -49,7 +49,7 @@
 	}
 
 	addEventListener("keydown", (e) => {
-		if ((!e.metaKey && !e.ctrlKey)) return;
+		if (!e.metaKey && !e.ctrlKey) return;
 
 		let rate: number | null = null;
 
@@ -72,70 +72,63 @@
 
 <Tooltip bind:speaker {play} />
 
-<style lang="postcss">
-	.controls {
-		@apply p-1 sm:p-0;
-		& * {
-			@apply align-middle leading-normal;
-		}
-	}
-</style>
-
 <div id="app" style:max-width="65ch" class="mx-auto">
-	<div
-		id=""
-		class="
-		sticky top-4
-			// 配置
-			w-fit sm:mx-auto mx-2
+	<div class="flex justify-center">
+		<div
+			id=""
+			class="
+				sticky top-4
+				// 配置
+				w-fit mx-2
 
-			// 中身の配置
-			flex justify-center items-center
-			sm:space-x-2
+				// 中身の配置
+				flex justify-center items-center
+				md:space-x-2
 
-				// スマホの場合、きつきつにならないようにする。
-				my-3 sm:my-0
-				// 改行するようにする。
-				flex-wrap
+					// スマホの場合、きつきつにならないようにする。
+					my-3 md:my-0
+					// 改行するようにする。
+					flex-wrap
 
-			// 見た目
-			p-1 sm:px-3 sm:py-2
-			bg-gray-light sm:bg-opacity-0 bg-opacity-5 backdrop-blur-md
-			rounded-md
-		"
-	>
-		<div class="controls">
-			<label for="voice-select">声：</label>
-			<select name="voice-select" bind:value={voiceName} class="w-24">
-				<option value="" disabled>選択してください</option>
-				{#each Object.values(speaker.voices) as voice}
-					<option value={voice.name}>{voice.name}</option>
-				{/each}
-			</select>
-		</div>
-		<wbr />
-
-		<div class="controls">
-			<label for="volume">音量：</label>
-			<input
-				type="range"
-				name="volume"
-				bind:value={volume}
-				min="0"
-				max="100"
-				class="align-middle w-24"
-			/>
-		</div>
-		<wbr />
-
-		<div class="w-fit space-y-1 sm:space-y-0 controls">
-			<button type="button" on:click={() => onPlay(0.5)}>ゆっくり再生</button>
-			<button type="button" on:click={() => onPlay(1)}>普通に再生</button>
+				// 見た目
+				p-1 md:px-3 md:py-2
+				bg-gray-light md:bg-opacity-0 bg-opacity-5 backdrop-blur-md
+				rounded-md
+			"
+		>
+			<div class="controls">
+				<label for="voice-select">声：</label>
+				<select name="voice-select" bind:value={voiceName} class="w-24">
+					<option value="" disabled>選択してください</option>
+					{#each Object.values(speaker.voices) as voice}
+						<option value={voice.name}>{voice.name}</option>
+					{/each}
+				</select>
+			</div>
 			<wbr />
-			<button type="button" on:click={onStop}>停止</button>
-			<button type="button" on:click={onReset}>消去</button>
+
+			<div class="controls">
+				<label for="volume">音量：</label>
+				<input
+					type="range"
+					name="volume"
+					bind:value={volume}
+					min="0"
+					max="100"
+					class="align-middle w-24"
+				/>
+			</div>
+			<wbr />
+
+			<div class="w-fit md:space-y-0 controls">
+				<button type="button" on:click={() => onPlay(0.5)}>ゆっくり再生</button>
+				<button type="button" on:click={() => onPlay(1)}>普通に再生</button>
+				<wbr />
+				<button type="button" on:click={onStop}>停止</button>
+				<button type="button" on:click={onReset}>消去</button>
+			</div>
+			<wbr />
 		</div>
-		<wbr />
 	</div>
 
 	<Paper
@@ -147,3 +140,15 @@
 		bind:element={paperElement}
 	/>
 </div>
+
+<style lang="postcss">
+	.controls {
+		@apply p-1 md:p-0 my-auto;
+		& * {
+			@apply align-middle leading-normal;
+		}
+		& button {
+			@apply md:my-0 my-1;
+		}
+	}
+</style>
