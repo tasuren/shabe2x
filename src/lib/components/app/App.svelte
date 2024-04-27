@@ -73,11 +73,9 @@
 <Tooltip bind:speaker {play} />
 
 <div id="app" style:max-width="65ch" class="mx-auto">
-	<div class="flex justify-center">
+	<div class="flex justify-center sticky top-4">
 		<div
-			id=""
 			class="
-				sticky top-4
 				// 配置
 				w-fit mx-2
 
