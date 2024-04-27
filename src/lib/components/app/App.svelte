@@ -125,7 +125,7 @@
 			</div>
 			<wbr />
 
-			<div class="w-fit space-y-1 controls">
+			<div class="w-fit space-y-1 sm:space-y-0 controls">
 				<button type="button" on:click={() => onPlay(0.5)}>ゆっくり再生</button>
 				<button type="button" on:click={() => onPlay(1)}>普通に再生</button>
 				<wbr />
