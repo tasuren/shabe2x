@@ -72,31 +72,38 @@
 
 <Tooltip bind:speaker {play} />
 
+<style lang="postcss">
+	.controls {
+		@apply p-1;
+		@apply sm:p-0;
+	}
+</style>
+
 <div id="app" style:max-width="65ch" class="mx-auto">
 	<div class="sticky top-4">
 		<div
 			class="
 				// 配置
-				sm:w-fit sm:mx-auto mx-2
+				w-fit sm:mx-auto mx-2
 
 				// 中身の配置
 				flex justify-center items-center
-				space-x-2 space-y-2 sm:space-y-0
+				sm:space-x-2
 
 					// スマホの場合、きつきつにならないようにする。
 					my-3 sm:my-0
-					// スマホの時、改行するようにする。
+					// 改行するようにする。
 					flex-wrap
 
 				// 見た目
-				p-2 sm:p-4
+				p-1 sm:px-3 sm:py-2
 				bg-gray-light sm:bg-opacity-0 bg-opacity-5 backdrop-blur-md
 				rounded-md
 			"
 		>
-			<div>
+			<div class="controls">
 				<label for="voice-select">声：</label>
-				<select name="voice-select" bind:value={voiceName} class="w-28">
+				<select name="voice-select" bind:value={voiceName} class="w-24">
 					<option value="" disabled>選択してください</option>
 					{#each Object.values(speaker.voices) as voice}
 						<option value={voice.name}>{voice.name}</option>
@@ -105,7 +112,7 @@
 			</div>
 			<wbr />
 
-			<div>
+			<div class="controls">
 				<label for="volume">音量：</label>
 				<input
 					type="range"
@@ -113,14 +120,15 @@
 					bind:value={volume}
 					min="0"
 					max="100"
-					class="align-middle"
+					class="align-middle w-24"
 				/>
 			</div>
 			<wbr />
 
-			<div class="w-fit">
+			<div class="w-fit space-y-1 controls">
 				<button type="button" on:click={() => onPlay(0.5)}>ゆっくり再生</button>
 				<button type="button" on:click={() => onPlay(1)}>普通に再生</button>
+				<wbr />
 				<button type="button" on:click={onStop}>停止</button>
 				<button type="button" on:click={onReset}>消去</button>
 			</div>
