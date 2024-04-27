@@ -7,7 +7,9 @@ export default {
 	theme: {
 		colors: {
 			"gray-dark": "#27272a",
-			"gray-light": "#d4d4d8"
+			"gray-light": "#d4d4d8",
+			"link": "#539af8",
+			"link-visited": "#9268de"
 		},
 		fontFamily: {
 			sans: ["Graphik", "sans-serif"],

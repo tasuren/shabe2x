@@ -4,4 +4,10 @@
 
 body { margin: 0; }
 
+a {
+  @apply text-link;
+}
+a:visited {
+  @apply text-link-visited;
+}
 img { height: auto; max-width: 100%; @apply rounded-md; }

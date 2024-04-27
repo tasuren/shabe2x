@@ -46,6 +46,7 @@
 				<div>
 					<a
 						{href}
+						class="visited:text-link"
 						on:click={() => {
 							if (!isMd) menuHidden = true;
 						}}>{text}</a
