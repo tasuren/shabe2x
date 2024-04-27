@@ -10,12 +10,11 @@
 	onMount(() => {});
 </script>
 
-<div class="flex justify-center">
-	<div style:max-width="65ch" class="mx-4">
-		<Nav />
 
-		<main class="pb-10">
-			<slot />
-		</main>
-	</div>
+<div style:max-width="65ch" class="mx-auto px-4">
+	<Nav />
+
+	<main class="pb-10">
+		<slot />
+	</main>
 </div>
