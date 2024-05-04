@@ -36,7 +36,16 @@
 
 		if (!range.collapsed) {
 			x = event.clientX + scrollX;
-			y = event.clientY + scrollY + 10;
+
+			// Y座標はマウスカーソルの位置に近い方の選択箇所の向こう側とする。
+			const rect = range.getBoundingClientRect();
+			if (event.clientY < rect.y + rect.height / 2)
+				// もしも選択箇所の半分より上にマウスカーソルがあるなら、
+				// 選択箇所の上側の向こう側をY座標とする。
+				y = rect.top + scrollY - 50;
+			// 選択箇所の下側のY座標。
+			else y = event.clientY + scrollY + 15;
+
 			hidden = false;
 		}
 
