@@ -10,6 +10,7 @@ a {
 a:visited {
   @apply text-link-visited;
 }
+li { @apply marker:!text-gray-dark dark:marker:!text-gray-light; }
 img { height: auto; max-width: 100%; @apply rounded-md; }
 
 prose {
