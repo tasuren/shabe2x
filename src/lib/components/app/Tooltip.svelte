@@ -77,7 +77,7 @@
 		id="app-tooltip"
 		class="
 			// レイアウト
-			absolute space-x-2 p-2
+			absolute space-x-2 p-2 z-50
 			// 見た目
 			backdrop-blur-md rounded-md
 		"
