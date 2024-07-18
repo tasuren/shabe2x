@@ -7,8 +7,8 @@ export default {
 	theme: {
 		colors: {
 			"gray-dark": "#27272a",
-			"gray-light": "#d4d4d8",
-			"link": "#539af8",
+			"gray-light": "#ffffff",
+			link: "#539af8",
 			"link-visited": "#9268de"
 		},
 		fontFamily: {
@@ -21,7 +21,7 @@ export default {
 					css: {
 						"--tw-prose-headings": theme("colors.zinc[800]"),
 						"--tw-prose-invert-headings": theme("colors.zinc[300]"),
-						"--tw-prose-links": theme('colors.link'),
+						"--tw-prose-links": theme("colors.link"),
 						"--tw-prose-invert-links": theme("colors.link")
 					}
 				}
