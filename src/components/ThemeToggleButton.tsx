@@ -1,4 +1,5 @@
-import { type Theme, useTheme } from "@lib/theme";
+import { useTheme } from "@lib/theme";
+import type { JSX } from "solid-js/jsx-runtime";
 
 const THEME_TITLES = {
 	dark: "ダーク",
@@ -6,7 +7,7 @@ const THEME_TITLES = {
 	auto: "自動",
 };
 
-function ThemeToggleButton() {
+function ThemeToggleButton(props: { class: string }) {
 	const [theme, setTheme] = useTheme();
 
 	const toggleTheme = () => {
@@ -17,7 +18,7 @@ function ThemeToggleButton() {
 	};
 
 	return (
-		<button type="button" on:click={toggleTheme}>
+		<button type="button" on:click={toggleTheme} class={props.class}>
 			{THEME_TITLES[theme()]}
 		</button>
 	);

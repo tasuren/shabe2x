@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@lib/theme";
 import "./App.css";
-import { Header } from "./components/layout";
+import Layout from "./components/Layout";
 
 const App = () => {
 	return (
 		<ThemeProvider>
-			<Header />
+			<Layout>a</Layout>
 		</ThemeProvider>
 	);
 };
