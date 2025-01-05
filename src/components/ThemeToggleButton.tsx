@@ -1,5 +1,4 @@
-import { useTheme } from "@lib/theme";
-import type { JSX } from "solid-js/jsx-runtime";
+import { useTheme } from "./Context";
 
 const THEME_TITLES = {
 	dark: "ダーク",

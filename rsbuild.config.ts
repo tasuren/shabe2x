@@ -4,6 +4,9 @@ import { pluginSolid } from "@rsbuild/plugin-solid";
 import { pluginTypedCSSModules } from "@rsbuild/plugin-typed-css-modules";
 
 export default defineConfig({
+	html: {
+		template: "index.html"
+	},
 	plugins: [
 		pluginBabel({
 			include: /\.(?:jsx|tsx)$/,

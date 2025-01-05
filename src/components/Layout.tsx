@@ -1,19 +1,21 @@
-import ThemeToggleButton from "@components/ThemeToggleButton";
 import type { ParentProps } from "solid-js";
+
+import ThemeToggleButton from "@/components/ThemeToggleButton";
 
 function Layout(props: ParentProps) {
 	return (
-		<>
-			<div class="w-[65ch] mx-auto flex flex-col h-full">
-				<header class="flex-none flex justify-between">
-					<h1>しゃべしゃべ</h1>
+		<div class="w-full md:w-[65ch] h-full m-auto flex flex-col justify-between">
+			<header class="mx-4 flex-none flex justify-between items-center">
+				<h1 class="text-2xl md:text-3xl">しゃべしゃべ</h1>
 
-					<ThemeToggleButton class="h-fit mr-1 my-auto" />
-				</header>
+				<div class="space-x-2 h-fit">
+					<button type="button">説明書</button>
+					<ThemeToggleButton class="h-fit mr-2" />
+				</div>
+			</header>
 
-				<main class="grow">{props.children}</main>
-			</div>
-		</>
+			<main class="flex-grow h-full">{props.children}</main>
+		</div>
 	);
 }
 

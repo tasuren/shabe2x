@@ -1,21 +1,27 @@
-import { ThemeProvider } from "@lib/theme";
-import Paper from "@components/Paper";
-import Layout from "@components/Layout";
+import Controller from "@/components/Controller";
+import Layout from "@/components/Layout";
+import Paper from "@/components/Paper";
 
 import "./App.css";
-import Controller from "@components/Controller";
+import { LibraryProvider } from "./components/Context";
 
-const App = () => {
+function MainContent() {
 	return (
-		<ThemeProvider>
-			<Layout>
-				<div class="flex flex-col">
-					<Controller />
-					<Paper />
-				</div>
-			</Layout>
-		</ThemeProvider>
+		<div class="h-full flex flex-col">
+			<Controller />
+			<Paper />
+		</div>
 	);
-};
+}
+
+function App() {
+	return (
+		<LibraryProvider>
+			<Layout>
+				<MainContent />
+			</Layout>
+		</LibraryProvider>
+	);
+}
 
 export default App;
