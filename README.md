@@ -16,13 +16,6 @@ Web Speech APIを使ったネイティブ環境での読み上げを使用し、
 - Tailwind Variants
 - Cloudflare Pages
 
-## ToDo
-- [x] Web Speech APIによる読み上げの実装
-- [ ] GoogleのText-to-Speech AIによる読み上げの実装
-  これは有料のため、有料プランやAPIキーの設定項目を設ける可能性があります。
-- [ ] ログイン機能と周辺のインフラを整備
-- [ ] 「後で読むリスト」などの機能を実装
-
 ## 開発
 ### 用語
 - Voice: ウェブ音声 APIの`SpeechSynthesisVoice`のことで、音声の種類を表す。
