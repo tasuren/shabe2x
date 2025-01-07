@@ -140,8 +140,13 @@ export class TTS {
 		if (!voice) throw new Error("Voiceが設定されていません。");
 
 		utterance.voice = voice;
+		utterance.volume = this.settings.getVolume() * 0.01;
 		utterance.lang = voice.lang;
 		utterance.rate = rate;
+
+		if (speechSynthesis.speaking) {
+			this.cancel();
+		}
 
 		speechSynthesis.speak(utterance);
 	}

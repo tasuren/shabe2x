@@ -1,5 +1,6 @@
 import { For, createSignal, onCleanup, onMount } from "solid-js";
-import { usePaper, useTTS } from "./Context";
+import { usePaper, useTTS } from "../Context";
+import VoiceController from "./VoiceController";
 
 function VoiceSelect() {
 	const tts = useTTS();
@@ -79,28 +80,9 @@ function VolumeInput() {
 	);
 }
 
-function VoiceController() {
+function MainController() {
 	const [paper, _] = usePaper();
-	const tts = useTTS();
 
-	return (
-		<>
-			<button
-				type="button"
-				onClick={() => tts.speech(paper().getHtmlAsText(), 1)}
-			>
-				ゆっくり再生
-			</button>
-			<button type="button">普通に再生</button>
-			<button type="button">停止</button>
-			<button type="button" onClick={() => paper().reset()}>
-				消去
-			</button>
-		</>
-	);
-}
-
-function Controller() {
 	return (
 		<div class="mb-4 flex justify-evenly flex-wrap">
 			<div>
@@ -112,10 +94,14 @@ function Controller() {
 			</div>
 
 			<div class="space-x-2 pt-1 md:pt-0">
-				<VoiceController />
+				<VoiceController getText={() => paper().getHtmlAsText()} />
+
+				<button type="button" onClick={() => paper().reset()}>
+					消去
+				</button>
 			</div>
 		</div>
 	);
 }
 
-export default Controller;
+export default MainController;
