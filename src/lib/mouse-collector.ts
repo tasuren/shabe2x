@@ -1,41 +1,41 @@
-type MousePosition = { x: number; y: number };
+export type PagePosition = { x: number; y: number };
 
 /**
  * マウスの場所を取得するためのクラス
  */
 export class Mouse {
-	private resolve: ((position: MousePosition) => void) | null;
-	private before: MousePosition;
-	private eventListener: (event: MouseEvent) => void;
+    private resolve: ((position: PagePosition) => void) | null;
+    private before: PagePosition;
+    private eventListener: (event: MouseEvent) => void;
 
-	constructor() {
-		this.resolve = null;
-		this.before = { x: 0, y: 0 };
+    constructor() {
+        this.resolve = null;
+        this.before = { x: 0, y: 0 };
 
-		this.eventListener = (e) => this.onMouseMove(this, e);
-		addEventListener("mousemove", this.eventListener);
-	}
+        this.eventListener = (e) => this.onMouseMove(this, e);
+        addEventListener("mousemove", this.eventListener);
+    }
 
-	private onMouseMove(mouse: Mouse, event: MouseEvent) {
-		if (!mouse.resolve) return;
+    private onMouseMove(mouse: Mouse, event: MouseEvent) {
+        if (!mouse.resolve) return;
 
-		mouse.resolve({ x: event.pageX, y: event.pageY });
-	}
+        mouse.resolve({ x: event.pageX, y: event.pageY });
+    }
 
-	async getMousePosition(): Promise<MousePosition> {
-		const position = await new Promise<MousePosition>((resolve) => {
-			this.resolve = resolve;
+    async getMousePosition(): Promise<PagePosition> {
+        const position = await new Promise<PagePosition>((resolve) => {
+            this.resolve = resolve;
 
-			setTimeout(() => resolve(this.before), 100);
-		});
+            setTimeout(() => resolve(this.before), 100);
+        });
 
-		this.resolve = null;
-		this.before = position;
+        this.resolve = null;
+        this.before = position;
 
-		return position;
-	}
+        return position;
+    }
 
-	close() {
-		removeEventListener("mousemove", this.eventListener);
-	}
+    close() {
+        removeEventListener("mousemove", this.eventListener);
+    }
 }
