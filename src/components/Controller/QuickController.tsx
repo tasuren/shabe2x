@@ -89,7 +89,7 @@ function QuickController() {
 
     return (
         <div
-            class="absolute space-x-2 p-2 z-50"
+            class="absolute space-x-2 p-2 z-50 rounded-md backdrop-blur"
             classList={{ hidden: hidden() }}
             style={{ left: `${position().x}px`, top: `${position().y}px` }}
             // biome-ignore lint: マウスを使う前提のボタン群なので、onFocusは↓とセットで使わない。
