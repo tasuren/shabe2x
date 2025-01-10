@@ -1,4 +1,4 @@
-import { usePaper, useTTS } from "../Context";
+import { useTTS } from "../Context";
 
 function VoiceController({ getText }: { getText: () => string }) {
     const tts = useTTS();

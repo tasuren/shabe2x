@@ -1,12 +1,12 @@
 import {
     type Accessor,
+    type ParentProps,
     createEffect,
     createSignal,
     onCleanup,
     onMount,
-    type ParentProps,
 } from "solid-js";
-import { calculateClosestPosition, Mouse, type PagePosition } from "./position";
+import { Mouse, type PagePosition, calculateClosestPosition } from "./position";
 
 /** ポップアップ */
 function PopUp(

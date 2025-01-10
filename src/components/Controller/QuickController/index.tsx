@@ -1,7 +1,7 @@
 import { stringifyNode } from "@/lib/paper";
-import { createSignal, onCleanup, onMount, Show } from "solid-js";
-import PopUp from "./PopUp";
+import { Show, createSignal, onCleanup, onMount } from "solid-js";
 import VoiceController from "../VoiceController";
+import PopUp from "./PopUp";
 
 function makeGoogleTranslateURL(document: DocumentFragment): string {
     const params = new URLSearchParams({

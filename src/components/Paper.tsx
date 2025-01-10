@@ -1,7 +1,6 @@
 import DOMPurify from "dompurify";
 
 import { usePaper } from "./Context";
-import { onCleanup, onMount } from "solid-js";
 
 /**
  * 渡された要素のスタイルなどを無くす。
