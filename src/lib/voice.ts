@@ -88,11 +88,11 @@ class Settings {
         return speechSynthesis.getVoices();
     }
 
-    addEventListenerVoicesChanged(handler: () => void) {
+    mount(handler: () => void) {
         speechSynthesis.addEventListener("voiceschanged", handler);
     }
 
-    removeEventListenerVoicesChanged(handler: () => void) {
+    cleanup(handler: () => void) {
         speechSynthesis.removeEventListener("voiceschanged", handler);
     }
 

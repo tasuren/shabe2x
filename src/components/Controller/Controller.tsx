@@ -23,11 +23,11 @@ function VoiceSelect() {
     };
 
     onMount(() => {
-        tts.settings.addEventListenerVoicesChanged(updateVoices);
+        tts.settings.mount(updateVoices);
     });
 
     onCleanup(() => {
-        tts.settings.removeEventListenerVoicesChanged(updateVoices);
+        tts.settings.cleanup(updateVoices);
     });
 
     return (
