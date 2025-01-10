@@ -75,20 +75,8 @@ function onPaste(event: ClipboardEvent) {
     paste(rawHtml);
 }
 
-function onMouseDown() {
-    
-}
-
 function Paper() {
     const [_, setPaper] = usePaper();
-
-    onMount(() => {
-        addEventListener("mousedown", onMouseDown);
-    });
-
-    onCleanup(() => {
-        removeEventListener("mousedown", onMouseDown);
-    });
 
     return (
         <article
