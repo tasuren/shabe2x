@@ -1,8 +1,8 @@
-const { withTV } = require("tailwind-variants/transformer");
+import { withTV } from "tailwind-variants/transformer";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = withTV({
-    content: ["./src/**/*.{js,jsx,ts,tsx}"],
+    content: ["./src/**/*.{js,jsx,ts,tsx}", "index.html"],
     theme: {
         extend: {},
     },

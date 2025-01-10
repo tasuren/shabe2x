@@ -84,7 +84,7 @@ function MainController() {
     const [paper, _] = usePaper();
 
     return (
-        <div class="mb-4 flex justify-evenly flex-wrap">
+        <div class="flex justify-evenly flex-wrap">
             <div>
                 <VoiceSelect />
             </div>
