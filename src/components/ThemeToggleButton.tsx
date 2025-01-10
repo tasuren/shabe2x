@@ -18,7 +18,7 @@ function ThemeToggleButton(props: { class: string }) {
 
     return (
         <button type="button" on:click={toggleTheme} class={props.class}>
-            {THEME_TITLES[theme()]}
+            テーマ：{THEME_TITLES[theme()]}
         </button>
     );
 }
