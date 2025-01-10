@@ -1,6 +1,7 @@
 import type { ParentProps } from "solid-js";
 
 import ThemeToggleButton from "@/components/ThemeToggleButton";
+import ManualButton from "./ManualButton";
 
 function Layout(props: ParentProps) {
     return (
@@ -9,7 +10,7 @@ function Layout(props: ParentProps) {
                 <h1 class="text-2xl md:text-3xl">しゃべしゃべ</h1>
 
                 <div class="space-x-2 h-fit">
-                    <button type="button">説明書</button>
+                    <ManualButton />
                     <ThemeToggleButton class="h-fit mr-2" />
                 </div>
             </header>

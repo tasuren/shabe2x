@@ -6,7 +6,11 @@ import {
     onCleanup,
     onMount,
 } from "solid-js";
-import { Mouse, type PagePosition, calculateClosestPosition } from "./position";
+import {
+    Mouse,
+    type PagePosition,
+    calculateClosestPosition,
+} from "./position.ts";
 
 /** ポップアップ */
 function PopUp(
