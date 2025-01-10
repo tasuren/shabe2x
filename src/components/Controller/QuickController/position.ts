@@ -57,7 +57,7 @@ export async function calculateClosestPosition(
     const mousePosition = await mouse.getMousePosition();
 
     // 選択箇所のすぐそこにツールチップを移動させる。
-    x = mousePosition.x + scrollX;
+    x = mousePosition.x;
 
     // QuickControllerが右端に突き刺さらないように考慮する。
     if (x + elementWidth > innerWidth) x = innerWidth - elementWidth;
@@ -69,7 +69,7 @@ export async function calculateClosestPosition(
         // 選択箇所の上側の向こう側をY座標とする。
         y = rect.top + scrollY - 50;
     // 選択箇所の下側のY座標。
-    else y = mousePosition.y + scrollY + 15;
+    else y = mousePosition.y + 15;
 
     return { x, y };
 }
