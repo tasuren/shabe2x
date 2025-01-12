@@ -92,7 +92,7 @@ function MainController() {
                 "flex-wrap",
                 "sticky top-4",
                 // 見た目
-                "p-4 md:py-2 md:px-4",
+                "p-2 md:py-2 md:px-4",
                 "w-fit space-x-2 mx-auto",
                 "backdrop-blur",
             )}
