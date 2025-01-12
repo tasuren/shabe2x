@@ -1,3 +1,4 @@
+import { cl } from "@/lib/ui";
 import { For, createSignal, onCleanup, onMount } from "solid-js";
 import { usePaper, useTTS } from "../Context";
 import VoiceController from "./VoiceController";
@@ -84,7 +85,18 @@ function MainController() {
     const [paper, _] = usePaper();
 
     return (
-        <div class="flex justify-evenly flex-wrap">
+        <div
+            class={cl(
+                // 配置と位置
+                "flex justify-evenly",
+                "flex-wrap",
+                "sticky top-4",
+                // 見た目
+                "p-4 md:py-2 md:px-4",
+                "w-fit space-x-2 mx-auto",
+                "backdrop-blur",
+            )}
+        >
             <div>
                 <VoiceSelect />
             </div>
@@ -94,7 +106,7 @@ function MainController() {
             </div>
 
             <div class="space-x-2 pt-1 md:pt-0">
-                <VoiceController getText={() => paper().getHtmlAsText()} />
+                <VoiceController />
 
                 <button type="button" onClick={() => paper().reset()}>
                     消去

@@ -20,8 +20,8 @@ function OnlyBigMonitor(props: ParentProps) {
 function MainContent() {
     return (
         <>
-            <main class="flex-grow relative">
-                <div class="absolute w-full h-full flex flex-col justify-between">
+            <main class="flex-grow">
+                <div class="w-full h-full flex flex-col justify-between">
                     <div class="space-y-4">
                         <Controller />
                         <Paper />
