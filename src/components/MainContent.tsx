@@ -1,4 +1,4 @@
-import Controller from "@/components/Controller/Controller";
+import MainController from "@/components/Controller/MainController";
 import QuickController from "@/components/Controller/QuickController";
 import Paper from "@/components/Paper";
 import { type ParentProps, Show, createSignal } from "solid-js";
@@ -10,7 +10,6 @@ function OnlyBigMonitor(props: ParentProps) {
     const [isBigMonitor, setIsBigMonitor] = createSignal(mql.matches);
 
     mql.onchange = (e) => {
-        console.log(e.matches);
         setIsBigMonitor(e.matches);
     };
 
@@ -22,7 +21,7 @@ function MainContent() {
         <>
             <main class="flex-1 flex flex-col justify-between">
                 <div class="space-y-4">
-                    <Controller />
+                    <MainController />
                     <Paper />
                 </div>
 

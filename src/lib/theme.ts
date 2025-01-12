@@ -1,8 +1,8 @@
 import {
+    type ParentProps,
     createContext,
     createEffect,
     createSignal,
-    type ParentProps,
     useContext,
 } from "solid-js";
 
