@@ -22,7 +22,7 @@ function QuickController() {
             class="space-x-2 p-2 z-50 rounded-md backdrop-blur"
             id="quick-controller"
         >
-            <VoiceController getText={() => selectedContents() || ""} />
+            <VoiceController />
 
             <Show
                 when={selectedContents()}
