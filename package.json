@@ -1,5 +1,7 @@
 {
     "name": "shabe2x",
+    "description": "シンプルなHTML書式対応のシャドーイング支援アプリ",
+    "license": "GPL-3.0-only",
     "private": true,
     "version": "1.0.0",
     "scripts": {
