@@ -11,11 +11,11 @@ function ManualButton() {
             </button>
 
             <dialog
+                style="margin: 0;" // リセットCSS
                 class={cl(
-                    "m-0",
                     "absolute left-1/2 top-1/2",
                     "-translate-x-1/2 -translate-y-1/2",
-                    "w-1/2 h-4/5",
+                    "w-5/6 md:w-1/2 h-4/5",
                 )}
                 ref={dialogElement}
             >
