@@ -7,9 +7,6 @@ export default defineConfig({
     html: {
         template: "index.html",
     },
-    output: {
-        assetPrefix: "/shabe2x/",
-    },
     plugins: [
         pluginBabel({
             include: /\.(?:jsx|tsx)$/,
