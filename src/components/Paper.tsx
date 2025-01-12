@@ -91,6 +91,7 @@ function Paper() {
     return (
         <article
             class={cl(
+                "flex-grow",
                 "p-2",
                 "outline",
                 "outline-1",
