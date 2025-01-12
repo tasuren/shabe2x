@@ -12,7 +12,10 @@ function VoiceController() {
             >
                 ゆっくり再生
             </button>
-            <button type="button" onClick={() => tts.speech(paper().getText(), 1)}>
+            <button
+                type="button"
+                onClick={() => tts.speech(paper().getText(), 1)}
+            >
                 再生
             </button>
             <button type="button" onClick={() => tts.cancel()}>

@@ -12,7 +12,7 @@ function Layout(props: ParentProps) {
                 "ms-auto",
                 "me-auto",
                 "flex",
-                "flex-col"
+                "flex-col",
             )}
         >
             <TitleBar />
