@@ -94,6 +94,8 @@ function Paper() {
                 "p-2",
                 "outline",
                 "outline-1",
+                "focus:outline-black",
+                "dark:focus:outline-white",
                 "min-h-40",
                 "my-2",
                 "mx-3",

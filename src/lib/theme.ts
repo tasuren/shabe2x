@@ -23,4 +23,7 @@ export function applyThemeToDOM(theme: Theme) {
 
     // カラースキーマを変更
     document.documentElement.style.colorScheme = absTheme;
+
+    // Tailwind CSSのためのテーマ情報を設定
+    document.documentElement.setAttribute("data-theme", absTheme);
 }
