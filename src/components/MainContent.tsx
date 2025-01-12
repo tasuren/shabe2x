@@ -1,7 +1,21 @@
 import Controller from "@/components/Controller/Controller";
 import QuickController from "@/components/Controller/QuickController";
 import Paper from "@/components/Paper";
+import { type ParentProps, Show, createSignal } from "solid-js";
 import Footer from "./Footer";
+
+/** 大きいモニターの場合しか表示しないコンポーネント */
+function OnlyBigMonitor(props: ParentProps) {
+    const mql = window.matchMedia("(min-width: 768px)");
+    const [isBigMonitor, setIsBigMonitor] = createSignal(mql.matches);
+
+    mql.onchange = (e) => {
+        console.log(e.matches);
+        setIsBigMonitor(e.matches);
+    };
+
+    return <Show when={isBigMonitor()}>{props.children}</Show>;
+}
 
 function MainContent() {
     return (
@@ -17,7 +31,9 @@ function MainContent() {
                 </div>
             </main>
 
-            <QuickController />
+            <OnlyBigMonitor>
+                <QuickController />
+            </OnlyBigMonitor>
         </>
     );
 }
