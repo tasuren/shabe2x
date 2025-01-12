@@ -17,7 +17,7 @@ function Layout(props: ParentProps) {
         >
             <TitleBar />
 
-            <main class="flex-grow relative">{props.children}</main>
+            {props.children}
         </div>
     );
 }

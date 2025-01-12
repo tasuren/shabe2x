@@ -85,13 +85,33 @@ export function usePaper(): [() => Paper, (raw: HTMLElement) => void] {
     ];
 }
 
+// 選択した文章に関するコンテクスト
+const SelectedContentsContext =
+    createContext<[() => string | undefined, (contents: string) => void]>();
+
+function SelectedContentsProvider(props: ParentProps) {
+    const [contents, setContents] = createSignal<string>();
+
+    return (
+        <SelectedContentsContext.Provider value={[contents, setContents]}>
+            {props.children}
+        </SelectedContentsContext.Provider>
+    );
+}
+
+export function useSelectedContents() {
+    return useContext(SelectedContentsContext);
+}
+
 // 全てのコンテクストプロバイダーを適用するコンポーネント
 export function LibraryProvider(props: ParentProps) {
     return (
-        <PaperProvider>
-            <ThemeProvider>
-                <VoiceProvider>{props.children}</VoiceProvider>
-            </ThemeProvider>
-        </PaperProvider>
+        <SelectedContentsProvider>
+            <PaperProvider>
+                <ThemeProvider>
+                    <VoiceProvider>{props.children}</VoiceProvider>
+                </ThemeProvider>
+            </PaperProvider>
+        </SelectedContentsProvider>
     );
 }

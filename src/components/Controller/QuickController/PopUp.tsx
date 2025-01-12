@@ -1,5 +1,5 @@
+import { usePaper } from "@/components/Context.tsx";
 import {
-    type Accessor,
     type ParentProps,
     createEffect,
     createSignal,
@@ -12,22 +12,24 @@ import {
     calculateClosestPosition,
 } from "./position.ts";
 
-/** ポップアップ */
+/** ポップアップ表示ができるコンポーネント */
 function PopUp(
     props: ParentProps<{
         class: string;
         id: string;
-        selectedRange: Accessor<Range | undefined>;
     }>,
 ) {
+    const [paper, _] = usePaper();
+
     const [position, setPosition] = createSignal<PagePosition>({ x: 0, y: 0 });
     const [hidden, setHidden] = createSignal(true);
     let element: HTMLDivElement | undefined;
 
     // 文章が選択されたら、その場所にポップアップを表示する。
     const mouse = new Mouse();
+
     createEffect(async () => {
-        const range = props.selectedRange();
+        const range = paper().rangeState[0]();
         if (!range || !element) return;
 
         const newPosition = await calculateClosestPosition(

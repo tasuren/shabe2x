@@ -71,5 +71,7 @@ export async function calculateClosestPosition(
     // 選択箇所の下側のY座標。
     else y = mousePosition.y + 15;
 
+    console.log(mousePosition.x, { x, y });
+
     return { x, y };
 }

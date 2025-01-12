@@ -2,6 +2,7 @@ import DOMPurify from "dompurify";
 import { tv } from "tailwind-variants";
 
 import { cl } from "@/lib/ui";
+import { onCleanup, onMount } from "solid-js";
 import { usePaper } from "./Context";
 
 /**
@@ -77,7 +78,15 @@ function onPaste(event: ClipboardEvent) {
 }
 
 function Paper() {
-    const [_, setPaper] = usePaper();
+    const [paper, setPaper] = usePaper();
+
+    onMount(() => {
+        paper().mount();
+    });
+
+    onCleanup(() => {
+        paper().cleanup();
+    });
 
     return (
         <article
