@@ -2,6 +2,7 @@ import MainController from "@/components/Controller/MainController";
 import QuickController from "@/components/Controller/QuickController";
 import Paper from "@/components/Paper";
 import { type ParentProps, Show, createSignal } from "solid-js";
+import { PaperProvider, TTSProvider } from "./Context";
 import Footer from "./Footer";
 
 /** 大きいモニターの場合しか表示しないコンポーネント */
@@ -18,20 +19,22 @@ function OnlyBigMonitor(props: ParentProps) {
 
 function MainContent() {
     return (
-        <>
-            <main class="flex-1 flex flex-col justify-between">
-                <div class="space-y-4">
-                    <MainController />
-                    <Paper />
-                </div>
+        <PaperProvider>
+            <TTSProvider>
+                <main class="flex-1 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <MainController />
+                        <Paper />
+                    </div>
 
-                <Footer />
-            </main>
+                    <Footer />
+                </main>
 
-            <OnlyBigMonitor>
-                <QuickController />
-            </OnlyBigMonitor>
-        </>
+                <OnlyBigMonitor>
+                    <QuickController />
+                </OnlyBigMonitor>
+            </TTSProvider>
+        </PaperProvider>
     );
 }
 

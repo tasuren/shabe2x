@@ -13,8 +13,8 @@
 - Bun
 - SolidJS
 - Tailwind CSS
-  [Preflight](https://tailwindcss.com/docs/preflight)が無効化されています。
-  開発時にはこれを留意してください。
+  （[Preflight](https://tailwindcss.com/docs/preflight)が無効化されています。
+  開発時にはこれを留意してください。）
 - GitHub Pages
 
 ## 開発

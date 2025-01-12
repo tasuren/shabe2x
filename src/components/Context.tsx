@@ -1,54 +1,17 @@
 import { Paper } from "@/lib/paper";
-import {
-    type Theme,
-    applyThemeToDOM,
-    readTheme,
-    writeTheme,
-} from "@/lib/theme";
 import { TTS } from "@/lib/voice";
 import {
     type ParentProps,
     createContext,
-    createEffect,
     createSignal,
     useContext,
 } from "solid-js";
-
-// テーマのコンテクスト
-const ThemeContext = createContext<[() => Theme, (theme: Theme) => void]>();
-
-function ThemeProvider(props: ParentProps) {
-    const [theme, setTheme] = createSignal<Theme>(readTheme());
-
-    createEffect(() => {
-        const current = theme();
-        writeTheme(current);
-        applyThemeToDOM(current);
-    });
-
-    return (
-        <ThemeContext.Provider value={[theme, setTheme]}>
-            {props.children}
-        </ThemeContext.Provider>
-    );
-}
-
-export const useTheme = () => {
-    const value = useContext(ThemeContext);
-
-    if (!value)
-        throw new Error(
-            "テーマのコンテキストプロバイダーが使われていないようです。",
-        );
-
-    return value;
-};
 
 // VoiceControllerのコンテクスト
 const tts = new TTS();
 const TTSContext = createContext(tts);
 
-function VoiceProvider(props: ParentProps) {
+export function TTSProvider(props: ParentProps) {
     return (
         <TTSContext.Provider value={tts}>{props.children}</TTSContext.Provider>
     );
@@ -62,7 +25,7 @@ export function useTTS(): TTS {
 const PaperContext =
     createContext<[() => Paper | undefined, (paper: Paper) => void]>();
 
-function PaperProvider(props: ParentProps) {
+export function PaperProvider(props: ParentProps) {
     const [paper, setPaper] = createSignal<Paper>();
 
     return (
@@ -85,35 +48,4 @@ export function usePaper(): [() => Paper, (raw: HTMLElement) => void] {
         },
         (raw) => setPaper(new Paper(raw)),
     ];
-}
-
-// 選択した文章に関するコンテクスト
-const SelectedContentsContext =
-    createContext<[() => string | undefined, (contents: string) => void]>();
-
-function SelectedContentsProvider(props: ParentProps) {
-    const [contents, setContents] = createSignal<string>();
-
-    return (
-        <SelectedContentsContext.Provider value={[contents, setContents]}>
-            {props.children}
-        </SelectedContentsContext.Provider>
-    );
-}
-
-export function useSelectedContents() {
-    return useContext(SelectedContentsContext);
-}
-
-// 全てのコンテクストプロバイダーを適用するコンポーネント
-export function LibraryProvider(props: ParentProps) {
-    return (
-        <SelectedContentsProvider>
-            <PaperProvider>
-                <ThemeProvider>
-                    <VoiceProvider>{props.children}</VoiceProvider>
-                </ThemeProvider>
-            </PaperProvider>
-        </SelectedContentsProvider>
-    );
 }

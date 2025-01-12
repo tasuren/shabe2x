@@ -1,4 +1,6 @@
-import { useTheme } from "./Context";
+import { applyThemeToDOM, writeTheme } from "@/lib/theme";
+import { readTheme } from "@/lib/theme";
+import { createEffect, createSignal } from "solid-js";
 
 const THEME_TITLES = {
     dark: "ダーク",
@@ -7,7 +9,14 @@ const THEME_TITLES = {
 };
 
 function ThemeToggleButton(props: { class: string }) {
-    const [theme, setTheme] = useTheme();
+    const [theme, setTheme] = createSignal(readTheme());
+
+    createEffect(() => {
+        const current = theme();
+
+        writeTheme(current);
+        applyThemeToDOM(current);
+    });
 
     const toggleTheme = () => {
         const current = theme();
