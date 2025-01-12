@@ -1,6 +1,7 @@
 import DOMPurify from "dompurify";
 import { tv } from "tailwind-variants";
 
+import { cl } from "@/lib/ui";
 import { usePaper } from "./Context";
 
 /**
@@ -75,18 +76,22 @@ function onPaste(event: ClipboardEvent) {
     paste(rawHtml);
 }
 
-const article = tv({
-    base: ["p-2", "outline", "outline-1", "min-h-[30%]"],
-});
-
 function Paper() {
     const [_, setPaper] = usePaper();
 
     return (
         <article
-            class={article({
-                class: ["my-2", "mx-3", "md:m-0", "md:w-full", "box-border"],
-            })}
+            class={cl(
+                "p-2",
+                "outline",
+                "outline-1",
+                "min-h-40",
+                "my-2",
+                "mx-3",
+                "md:m-0",
+                "md:w-full",
+                "box-border",
+            )}
             contenteditable={true}
             onKeyDown={onKeyDown}
             onPaste={onPaste}

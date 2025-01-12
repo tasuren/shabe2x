@@ -6,11 +6,12 @@ import Footer from "./Footer";
 function MainContent() {
     return (
         <>
-            <div class="h-full flex flex-col justify-between">
+            <div class="absolute w-full h-full flex flex-col justify-between">
                 <div class="space-y-4">
                     <Controller />
                     <Paper />
                 </div>
+
                 <Footer />
             </div>
 

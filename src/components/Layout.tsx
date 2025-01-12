@@ -1,12 +1,23 @@
+import { cl } from "@/lib/ui";
 import type { ParentProps } from "solid-js";
 import TitleBar from "./TitleBar";
 
 function Layout(props: ParentProps) {
     return (
-        <div class="min-h-screen w-full md:w-[65ch] m-auto flex flex-col justify-between">
+        <div
+            class={cl(
+                "min-h-screen",
+                "w-full",
+                "md:w-[65ch]",
+                "ms-auto",
+                "me-auto",
+                "flex",
+                "flex-col"
+            )}
+        >
             <TitleBar />
 
-            <main class="flex-grow h-full">{props.children}</main>
+            <main class="flex-grow relative">{props.children}</main>
         </div>
     );
 }

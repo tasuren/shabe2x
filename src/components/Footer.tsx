@@ -1,5 +1,5 @@
 function Footer() {
-    return <footer class="pt-12 pb-6 text-center">© 2024 髙木 祐来</footer>;
+    return <footer class="text-center py-4">© 2024 髙木 祐来</footer>;
 }
 
 export default Footer;

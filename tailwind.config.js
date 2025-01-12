@@ -1,7 +1,5 @@
-import { withTV } from "tailwind-variants/transformer";
-
 /** @type {import('tailwindcss').Config} */
-module.exports = withTV({
+const CONFIG = {
     content: ["./src/**/*.{js,jsx,ts,tsx}", "index.html"],
     theme: {
         extend: {},
@@ -10,4 +8,6 @@ module.exports = withTV({
     corePlugins: {
         preflight: false,
     },
-});
+};
+
+export default CONFIG;

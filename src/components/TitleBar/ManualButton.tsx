@@ -1,16 +1,5 @@
-import { tv } from "tailwind-variants";
+import { cl } from "@/lib/ui";
 import Manual from "./Manual";
-
-const dialog = tv({
-    base: [
-        "m-0",
-        "absolute",
-        "left-1/2",
-        "top-1/2",
-        "-translate-x-1/2",
-        "-translate-y-1/2",
-    ],
-});
 
 function ManualButton() {
     let dialogElement: HTMLDialogElement | undefined;
@@ -22,7 +11,12 @@ function ManualButton() {
             </button>
 
             <dialog
-                class={dialog({ class: ["w-1/2 h-4/5"] })}
+                class={cl(
+                    "m-0",
+                    "absolute left-1/2 top-1/2",
+                    "-translate-x-1/2 -translate-y-1/2",
+                    "w-1/2 h-4/5",
+                )}
                 ref={dialogElement}
             >
                 <div class="h-full flex flex-col justify-between space-y-2">
