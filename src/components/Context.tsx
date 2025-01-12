@@ -35,10 +35,12 @@ function ThemeProvider(props: ParentProps) {
 
 export const useTheme = () => {
     const value = useContext(ThemeContext);
+
     if (!value)
         throw new Error(
             "テーマのコンテキストプロバイダーが使われていないようです。",
         );
+
     return value;
 };
 

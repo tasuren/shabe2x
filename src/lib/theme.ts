@@ -1,11 +1,3 @@
-import {
-    type ParentProps,
-    createContext,
-    createEffect,
-    createSignal,
-    useContext,
-} from "solid-js";
-
 // テーマ定義
 const ABSOLUTE_THEMES = ["dark", "light"] as const;
 export type AbsoluteTheme = (typeof ABSOLUTE_THEMES)[number];

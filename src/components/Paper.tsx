@@ -1,5 +1,4 @@
 import DOMPurify from "dompurify";
-import { tv } from "tailwind-variants";
 
 import { cl } from "@/lib/ui";
 import { onCleanup, onMount } from "solid-js";
