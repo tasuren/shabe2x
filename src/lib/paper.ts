@@ -70,7 +70,6 @@ export class Paper {
     protected onSelectionChange() {
         const range = this.getSelectionRange();
 
-        console.log(1);
         if (range) {
             const setRange = this.rangeState[1];
             setRange(range);
