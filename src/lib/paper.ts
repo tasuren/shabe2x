@@ -72,6 +72,9 @@ export class Paper {
 
         if (range) {
             const setRange = this.rangeState[1];
+            // ここで一旦undefinedを入れなければ、Safariで上手く動かない。
+            // TODO: どうにかしたい。
+            setRange(undefined);
             setRange(range);
 
             const setSelectedContents = this.selectedContentsState[1];
