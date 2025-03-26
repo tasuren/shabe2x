@@ -6,8 +6,12 @@ const DEFAULT_ENGLISH_VOICE_URIS = [
     "Samantha",
     // macOSでのSafari用
     "com.apple.voice.compact.en-US.Samantha",
+    // macOSでのFirefox用
+    "urn:moz-tts:osx:com.apple.voice.compact.en-US.Samantha",
     // WindowsでのChromiumベースのブラウザ用
     "Microsoft AvaMultilingual Online (Natural) - English (United States)",
+    // WindowsでのFirefox用
+    "urn:moz-tts:sapi:Microsoft Zira Desktop - English (United States)?en-US"
 ];
 
 /**
@@ -88,12 +92,12 @@ class Settings {
         return speechSynthesis.getVoices();
     }
 
-    mount(handler: () => void) {
-        speechSynthesis.addEventListener("voiceschanged", handler);
+    mount(onvoicechanged: () => void) {
+        speechSynthesis.addEventListener("voiceschanged", onvoicechanged);
     }
 
-    cleanup(handler: () => void) {
-        speechSynthesis.removeEventListener("voiceschanged", handler);
+    cleanup(onvoicechanged: () => void) {
+        speechSynthesis.removeEventListener("voiceschanged", onvoicechanged);
     }
 
     getVoice(): SpeechSynthesisVoice | null {
