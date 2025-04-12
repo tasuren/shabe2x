@@ -10,6 +10,7 @@
         "preview": "rsbuild preview"
     },
     "dependencies": {
+        "caniuse-lite": "^1.0.30001713",
         "dompurify": "^3.2.3",
         "solid-js": "^1.9.4"
     },
