@@ -69,6 +69,7 @@ export class Paper {
 
     protected onSelectionChange() {
         const range = this.getSelectionRange();
+        const setSelectedContents = this.selectedContentsState[1];
 
         if (range) {
             const setRange = this.rangeState[1];
@@ -77,8 +78,9 @@ export class Paper {
             setRange(undefined);
             setRange(range);
 
-            const setSelectedContents = this.selectedContentsState[1];
             setSelectedContents(stringifyNode(range.cloneContents()));
+        } else {
+            setSelectedContents(undefined);
         }
     }
 
