@@ -11,7 +11,7 @@ const DEFAULT_ENGLISH_VOICE_URIS = [
     // WindowsでのChromiumベースのブラウザ用
     "Microsoft AvaMultilingual Online (Natural) - English (United States)",
     // WindowsでのFirefox用
-    "urn:moz-tts:sapi:Microsoft Zira Desktop - English (United States)?en-US"
+    "urn:moz-tts:sapi:Microsoft Zira Desktop - English (United States)?en-US",
 ];
 
 /**
@@ -133,11 +133,20 @@ export class TTS {
         this.settings = new Settings();
     }
 
+    getRate(rate: "slow" | "normal") {
+        if (this.settings.getVoice()?.voiceURI.startsWith("urn:moz-tts:osx:")) {
+            // macOSのFirefoxで速度が1の場合、かなり早口になるので抑制する。
+            return rate === "slow" ? 0.5 : 0.7;
+        }
+
+        return rate === "slow" ? 0.5 : 1;
+    }
+
     /**
      * 渡された文字列を読み上げます。
      * もしもVoiceが設定されていない場合、`Error`を送出します。
      */
-    speech(text: string, rate: number) {
+    speech(text: string, rate: "slow" | "normal") {
         const utterance = new SpeechSynthesisUtterance(text);
         const voice = this.settings.getVoice();
 
@@ -146,7 +155,7 @@ export class TTS {
         utterance.voice = voice;
         utterance.volume = this.settings.getVolume() * 0.01;
         utterance.lang = voice.lang;
-        utterance.rate = rate;
+        utterance.rate = this.getRate(rate);
 
         if (speechSynthesis.speaking) {
             this.cancel();
