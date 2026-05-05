@@ -3,11 +3,11 @@
     "description": "シンプルなHTML書式対応のシャドーイング支援アプリ",
     "license": "GPL-3.0-only",
     "private": true,
-    "version": "1.0.0",
+    "version": "1.1.0",
     "scripts": {
-        "dev": "rsbuild dev --open",
-        "build": "rsbuild build",
-        "preview": "rsbuild preview"
+        "dev": "vite --open",
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "dependencies": {
         "caniuse-lite": "^1.0.30001791",
@@ -15,15 +15,11 @@
         "solid-js": "^1.9.12"
     },
     "devDependencies": {
-        "@biomejs/biome": "^1.9.4",
-        "@rsbuild/core": "^1.7.5",
-        "@rsbuild/plugin-babel": "^1.1.2",
-        "@rsbuild/plugin-solid": "^1.1.1",
-        "@rsbuild/plugin-typed-css-modules": "^1.2.2",
-        "@tailwindcss/typography": "^0.5.19",
-        "autoprefixer": "^10.5.0",
-        "postcss": "^8.5.14",
-        "tailwindcss": "^3.4.19",
-        "typescript": "^5.9.3"
+        "@biomejs/biome": "^2.4.14",
+        "@tailwindcss/vite": "^4.2.4",
+        "tailwindcss": "^4.2.4",
+        "typescript": "^6.0.3",
+        "vite": "^8.0.10",
+        "vite-plugin-solid": "^2.11.12"
     }
 }
