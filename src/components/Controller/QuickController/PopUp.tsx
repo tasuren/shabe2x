@@ -30,7 +30,10 @@ function PopUp(
 
     createEffect(async () => {
         const range = paper().rangeState[0]();
-        if (!range || !element) return;
+        if (!range || !element) {
+            setHidden(true);
+            return;
+        }
 
         const newPosition = await calculateClosestPosition(
             mouse,

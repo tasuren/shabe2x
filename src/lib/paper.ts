@@ -69,10 +69,10 @@ export class Paper {
 
     protected onSelectionChange() {
         const range = this.getSelectionRange();
+        const setRange = this.rangeState[1];
         const setSelectedContents = this.selectedContentsState[1];
 
         if (range) {
-            const setRange = this.rangeState[1];
             // ここで一旦undefinedを入れなければ、Safariで上手く動かない。
             // TODO: どうにかしたい。
             setRange(undefined);
@@ -80,6 +80,7 @@ export class Paper {
 
             setSelectedContents(stringifyNode(range.cloneContents()));
         } else {
+            setRange(undefined);
             setSelectedContents(undefined);
         }
     }
@@ -97,7 +98,18 @@ export class Paper {
 
     /** Paperの中で選択されている部分を取得します。 */
     getSelectionRange(): Range | null {
-        return getSelectionRange();
+        const range = getSelectionRange();
+        if (!range) return null;
+
+        // 本文以外の選択はQuickControllerや読み上げ対象にしない。
+        if (
+            !this.raw.contains(range.startContainer) ||
+            !this.raw.contains(range.endContainer)
+        ) {
+            return null;
+        }
+
+        return range;
     }
 
     /** Paperに書き込まれているHTMLを返します。 */
